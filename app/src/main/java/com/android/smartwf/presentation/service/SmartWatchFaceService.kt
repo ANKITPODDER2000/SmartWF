@@ -15,6 +15,7 @@ import androidx.wear.watchface.WatchState
 import androidx.wear.watchface.style.CurrentUserStyleRepository
 import com.android.smartwf.presentation.render.ImageHelper
 import com.android.smartwf.presentation.render.SmartRenderer
+import com.android.smartwf.presentation.ui.activity.SettingsActivity
 import com.android.smartwf.presentation.ui.activity.SmartSuggestionsActivity
 import com.android.smartwf.presentation.utils.ComplicationUtils
 
@@ -57,18 +58,15 @@ class SmartWatchFaceService : WatchFaceService(), WatchFace.TapListener {
     @SuppressLint("WearRecents")
     override fun onTapEvent(tapType: Int, tapEvent: TapEvent, complicationSlot: ComplicationSlot?) {
         ImageHelper.iconPosRect?.let { iconPos ->
-            if (tapEvent.xPos in iconPos.left..iconPos.right && tapEvent.yPos in iconPos.top..iconPos.bottom) {
+            val intent =
+                if (tapEvent.xPos in iconPos.left..iconPos.right && tapEvent.yPos in iconPos.top..iconPos.bottom) {
+                    Intent(this, SmartSuggestionsActivity::class.java)
+                } else {
+                    Intent(this, SettingsActivity::class.java)
+                }
 
-                // Starting an activity
-
-                val intent = Intent(this, SmartSuggestionsActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-
-                Log.d("DEBUG_ANKIT", "onTapEvent: is clicked for smart suggestion...")
-            } else {
-                Log.d("DEBUG_ANKIT", "onTapEvent: clicked out side")
-            }
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            startActivity(intent)
         }
     }
 }

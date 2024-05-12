@@ -28,6 +28,9 @@
         <activity
             android:name=".presentation.ui.activity.SmartSuggestionsActivity"
             android:taskAffinity="" />
+        <activity
+            android:name=".presentation.ui.activity.SettingsActivity"
+            android:taskAffinity="" />
 
         <service
             android:name=".presentation.service.SmartWatchFaceService"

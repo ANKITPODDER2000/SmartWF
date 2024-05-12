@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -46,7 +47,7 @@ fun SmartSuggestionsMainScreen() {
                 Chip(
                     modifier = Modifier.fillMaxWidth(),
                     onClick = { /*TODO*/ },
-                    colors = ChipDefaults.chipColors(),
+                    colors = ChipDefaults.primaryChipColors(),
                     label = {
                         Text(text = "Header...", maxLines = 1, overflow = TextOverflow.Ellipsis)
                     },
