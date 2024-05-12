@@ -2,7 +2,6 @@ package com.android.smartwf.presentation.service
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.content.Intent.FLAG_ACTIVITY_NEW_TASK
 import android.util.Log
 import android.view.SurfaceHolder
 import androidx.wear.watchface.CanvasType
@@ -14,9 +13,9 @@ import androidx.wear.watchface.WatchFaceService
 import androidx.wear.watchface.WatchFaceType
 import androidx.wear.watchface.WatchState
 import androidx.wear.watchface.style.CurrentUserStyleRepository
-import com.android.smartwf.presentation.MainActivity
 import com.android.smartwf.presentation.render.ImageHelper
 import com.android.smartwf.presentation.render.SmartRenderer
+import com.android.smartwf.presentation.ui.activity.SmartSuggestionsActivity
 import com.android.smartwf.presentation.utils.ComplicationUtils
 
 class SmartWatchFaceService : WatchFaceService(), WatchFace.TapListener {
@@ -62,8 +61,8 @@ class SmartWatchFaceService : WatchFaceService(), WatchFace.TapListener {
 
                 // Starting an activity
 
-                val intent = Intent(this, MainActivity::class.java)
-                intent.flags = FLAG_ACTIVITY_NEW_TASK
+                val intent = Intent(this, SmartSuggestionsActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 startActivity(intent)
 
                 Log.d("DEBUG_ANKIT", "onTapEvent: is clicked for smart suggestion...")
