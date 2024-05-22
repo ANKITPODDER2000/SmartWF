@@ -59,49 +59,10 @@ class SmartRenderer(
         zonedDateTime: ZonedDateTime,
         sharedAssets: DigitalSharedAssets,
     ) {
-        renderHelper.setBackground(renderParameters, canvas, bounds)
+        renderHelper.setBackground(canvas, bounds)
+        renderHelper.setWeather(canvas, bounds)
         renderHelper.setSmartSuggestionsIcon(canvas, bounds)
         renderHelper.setDigitalWatchTime(canvas, bounds)
-        drawComplications(canvas, zonedDateTime)
-
-        val colorMatrix = ColorMatrix().apply {
-            setScale(0.5f, 0.5f, 0.5f, 0.2f)
-        }
-        canvas.drawRect(
-            bounds.width() * 0.15F,
-            bounds.height() * 0.6F,
-            bounds.width() * 0.85F,
-            bounds.height() * 0.8F,
-            Paint().apply {
-                color = Color.WHITE
-                colorFilter = ColorMatrixColorFilter(colorMatrix)
-                setShadowLayer(0F, 10F, 10F, Color.BLACK)
-            }
-        )
-
-        val text = "Good morning!"
-        val textBounds = Rect()
-        val p = Paint().apply {
-            color = Color.WHITE
-            textSize = 26f
-        }
-        p.getTextBounds(text, 0, text.length, textBounds)
-        val centerX = bounds.width() * 0.5F
-        val centerY = bounds.height() * 0.7F // Adjust this value to vertically center the text
-
-        canvas.drawText(
-            text,
-            centerX - textBounds.width() / 2,
-            centerY + textBounds.height() / 2,
-            p
-        )
-    }
-
-    private fun drawComplications(canvas: Canvas, zonedDateTime: ZonedDateTime) {
-        for ((_, complication) in complicationSlotsManager.complicationSlots) {
-            if (complication.enabled) {
-                complication.render(canvas, zonedDateTime, renderParameters)
-            }
-        }
+        renderHelper.setBottomBox(canvas, bounds)
     }
 }

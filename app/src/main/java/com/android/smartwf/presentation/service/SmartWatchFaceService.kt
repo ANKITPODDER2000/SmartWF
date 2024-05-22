@@ -57,7 +57,7 @@ class SmartWatchFaceService : WatchFaceService(), WatchFace.TapListener {
 
     @SuppressLint("WearRecents")
     override fun onTapEvent(tapType: Int, tapEvent: TapEvent, complicationSlot: ComplicationSlot?) {
-        ImageHelper.iconPosRect?.let { iconPos ->
+        /*ImageHelper.iconPosRect?.let { iconPos ->
             val intent =
                 if (tapEvent.xPos in iconPos.left..iconPos.right && tapEvent.yPos in iconPos.top..iconPos.bottom) {
                     Intent(this, SmartSuggestionsActivity::class.java)
@@ -67,6 +67,7 @@ class SmartWatchFaceService : WatchFaceService(), WatchFace.TapListener {
 
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
-        }
+        }*/
+        Log.d("DEBUG_ANKIT", "onTapEvent: is called tapType $tapType")
     }
 }

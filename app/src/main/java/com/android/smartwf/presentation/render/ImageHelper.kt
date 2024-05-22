@@ -44,7 +44,7 @@ class ImageHelper private constructor(context: Context) {
         val digitalTimePaint = Paint().apply {
             color = Color.WHITE
             isAntiAlias = true
-            textSize = 50f
+            textSize = 70f
             textAlign = Paint.Align.CENTER
         }
 
@@ -61,11 +61,6 @@ class ImageHelper private constructor(context: Context) {
 
     init {
         try {
-            backgroundImg = BitmapFactory.decodeResource(
-                context.resources,
-                R.drawable.watch_background_image
-            )
-
             backgroundColorFilterPaint = Paint()
             val colorMatrix = ColorMatrix().apply {
                 setScale(0.2f, 0.2f, 0.2f, 1.0f)
